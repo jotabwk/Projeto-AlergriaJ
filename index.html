@@ -120,18 +120,18 @@
                 <!-- Modelo 3D -->
                 <div class="bg-white/80 dark:bg-gray-800/80 p-4 rounded-3xl shadow-xl h-full min-h-[650px] flex flex-col border border-white/40 dark:border-gray-700/50">
                     <div class="flex justify-between items-center px-4 py-2 mb-2"><span class="font-bold text-gray-500 text-sm"><i class="fa-solid fa-rotate mr-2"></i>Girar</span><span class="font-bold text-gray-500 text-sm"><i class="fa-solid fa-magnifying-glass mr-2"></i>Zoom</span></div>
-                    <div id="bear-3d-container" class="w-full flex-1 bg-gradient-to-b from-blue-50 to-blue-100 dark:from-gray-700 dark:to-gray-900 rounded-2xl cursor-move shadow-inner"></div>
+                    <div id="bear-3d-container" class="w-full flex-1 bg-gradient-to-b from-[#f6eee8] via-[#efe3db] to-[#e4d3c8] dark:from-gray-700 dark:to-gray-900 rounded-2xl cursor-move shadow-inner"></div>
                 </div>
 
                 <div class="space-y-5">
                     <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-3xl shadow-lg border border-white/40 dark:border-gray-700/50">
                         <h3 class="font-fredoka text-xl font-bold text-alergria-blue mb-4">1. Especificação de Cor</h3>
                         <div class="flex flex-wrap gap-4">
-                            <button onclick="changeBearColor(0x8B4513, 'Marrom')" class="w-12 h-12 rounded-full bg-[#8B4513] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0xC93384, 'Rosa')" class="w-12 h-12 rounded-full bg-[#C93384] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0x2F5BFD, 'Azul')" class="w-12 h-12 rounded-full bg-[#2F5BFD] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0xEEE09B, 'Creme')" class="w-12 h-12 rounded-full bg-[#EEE09B] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0x7F4CA5, 'Lilás')" class="w-12 h-12 rounded-full bg-[#7F4CA5] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0xDCC266, 'Creme')" title="Creme (Padrão)" class="w-12 h-12 rounded-full bg-[#DCC266] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0x7C3F14, 'Marromo')" title="Marrom" class="w-12 h-12 rounded-full bg-[#7C3F14] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0xE00A80, 'Rosa')" title="Rosa" class="w-12 h-12 rounded-full bg-[#E00A80] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0x07396B, 'Azul')" title="Azul" class="w-12 h-12 rounded-full bg-[#07396B] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0x7F4CA5, 'Lilás')" title="Lilás" class="w-12 h-12 rounded-full bg-[#7F4CA5] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
                         </div>
                     </div>
                     
@@ -320,9 +320,8 @@
                 </div>
             </div>
 
-            <!-- SEÇÃO 1: GRÁFICO + TRANSPORTE INTEREMPRESAS (Fábrica ⇄ Áudio ⇄ AlerGria) -->
+            <!-- SEÇÃO 1: GRÁFICO + TRANSPORTE INTEREMPRESAS -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                <!-- Gráfico Volume Logístico -->
                 <div class="lg:col-span-2 bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
                     <h3 class="font-bold text-xl text-gray-800 dark:text-white mb-4"><i class="fa-solid fa-chart-column text-alergria-blue mr-2"></i> Volume de Logística (Últimos 6 Meses)</h3>
                     <div class="relative h-72 w-full"><canvas id="pcpChart"></canvas></div>
@@ -335,7 +334,6 @@
                         <p class="text-xs text-gray-500 dark:text-gray-400 mb-5">Fluxo de cargas entre Fabricação, Áudio e Hub AlerGria.</p>
 
                         <div class="space-y-4">
-                            <!-- Rota 1: Fábrica -> Empresa de Áudio -->
                             <div class="p-3.5 rounded-2xl bg-orange-50/80 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800/50">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-xs font-extrabold text-alergria-orange uppercase"><i class="fa-solid fa-industry mr-1"></i> Fábrica ➔ Áudio</span>
@@ -345,7 +343,6 @@
                                 <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1"><i class="fa-regular fa-clock mr-1"></i> Chegada na SoundChip: <strong>Hoje, 16:30</strong></p>
                             </div>
 
-                            <!-- Rota 2: Empresa de Áudio -> Nós (Hub AlerGria) -->
                             <div class="p-3.5 rounded-2xl bg-pink-50/80 dark:bg-pink-900/20 border border-pink-200 dark:border-pink-800/50">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-xs font-extrabold text-alergria-pink uppercase"><i class="fa-solid fa-microchip mr-1"></i> Áudio ➔ Hub AlerGria</span>
@@ -355,7 +352,6 @@
                                 <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1"><i class="fa-solid fa-shield-virus mr-1"></i> Próxima etapa: <strong>Câmara UV-C (Nós)</strong></p>
                             </div>
 
-                            <!-- Rota 3: Nós (Hub AlerGria) -> Hospitais -->
                             <div class="p-3.5 rounded-2xl bg-green-50/80 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50">
                                 <div class="flex items-center justify-between mb-1">
                                     <span class="text-xs font-extrabold text-green-600 dark:text-green-400 uppercase"><i class="fa-solid fa-truck-medical mr-1"></i> Hub AlerGria ➔ Hospitais</span>
@@ -371,8 +367,6 @@
 
             <!-- SEÇÃO 2: FILAS SEPARADAS (NOVOS PEDIDOS vs EM PRODUÇÃO) -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                
-                <!-- COLUNA 1: NOVOS PEDIDOS (AGUARDANDO ENVIO ÀS PARCEIRAS) -->
                 <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col">
                     <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-100 dark:border-gray-700">
                         <div>
@@ -381,13 +375,9 @@
                         </div>
                         <span id="badge-count-novos" class="bg-blue-100 dark:bg-blue-900 text-alergria-blue font-extrabold text-xs px-3 py-1 rounded-full">0 pedidos</span>
                     </div>
-                    
-                    <div id="lista-novos-pedidos" class="space-y-4 max-h-[420px] overflow-y-auto pcp-log-scroll pr-2">
-                        <!-- Renderizado via JS -->
-                    </div>
+                    <div id="lista-novos-pedidos" class="space-y-4 max-h-[420px] overflow-y-auto pcp-log-scroll pr-2"></div>
                 </div>
 
-                <!-- COLUNA 2: JÁ EM PRODUÇÃO (FÁBRICA / ÁUDIO / HUB ALERGRIA) -->
                 <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col">
                     <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-100 dark:border-gray-700">
                         <div>
@@ -396,12 +386,8 @@
                         </div>
                         <span id="badge-count-producao" class="bg-orange-100 dark:bg-orange-900/40 text-alergria-orange font-extrabold text-xs px-3 py-1 rounded-full">0 pedidos</span>
                     </div>
-                    
-                    <div id="lista-em-producao" class="space-y-4 max-h-[420px] overflow-y-auto pcp-log-scroll pr-2">
-                        <!-- Renderizado via JS -->
-                    </div>
+                    <div id="lista-em-producao" class="space-y-4 max-h-[420px] overflow-y-auto pcp-log-scroll pr-2"></div>
                 </div>
-
             </div>
 
             <!-- SEÇÃO 3: CRONOGRAMA DE ENVIO PARA CADA PARCEIRA & PRAZOS HOSPITALARES -->
@@ -426,9 +412,7 @@
                                 <th class="py-3 px-4"><i class="fa-solid fa-hospital-user text-green-500 mr-1"></i> Prazo no Hospital</th>
                             </tr>
                         </thead>
-                        <tbody id="tabela-parceiras-body" class="divide-y divide-gray-100 dark:divide-gray-700 text-sm">
-                            <!-- Renderizado via JS -->
-                        </tbody>
+                        <tbody id="tabela-parceiras-body" class="divide-y divide-gray-100 dark:divide-gray-700 text-sm"></tbody>
                     </table>
                 </div>
             </div>
@@ -512,7 +496,7 @@
     <script>
         // --- ESTADO GLOBAL DO SISTEMA ERP ---
         let currentOrderCode = '';
-        let selectedBearColorName = 'Marrom';
+        let selectedBearColorName = 'Creme Pêssego';
         let selectedBearPatternName = 'Lisa';
 
         const hospitaisRJ = [
@@ -530,7 +514,7 @@
                 id: "URSO-8804",
                 crianca: "Lucas Gabriel",
                 hospital: "Hospital Samaritano Botafogo",
-                urso: "Creme (Lisa)",
+                urso: "Creme Pêssego (Lisa)",
                 fase: "novo",
                 statusTag: "Aguardando Triagem",
                 envioFabrica: "19/11/2026 (Prev.)",
@@ -554,7 +538,7 @@
                 id: "URSO-8801",
                 crianca: "Arthur Silva",
                 hospital: "INCA - Instituto Nacional de Câncer",
-                urso: "Azul (Listras)",
+                urso: "Azul Bebê (Listras)",
                 fase: "producao",
                 statusTag: "Fábrica ➔ Áudio",
                 envioFabrica: "17/11/2026 - 09:00",
@@ -566,7 +550,7 @@
                 id: "URSO-8802",
                 crianca: "Alice Mansur",
                 hospital: "Hospital Copa D'Or",
-                urso: "Rosa (Bolinhas)",
+                urso: "Rosa Pastel (Bolinhas)",
                 fase: "producao",
                 statusTag: "Assepsia UV-C (Hub)",
                 envioFabrica: "16/11/2026 - 10:30",
@@ -578,7 +562,7 @@
                 id: "URSO-8803",
                 crianca: "Bernardo Costa",
                 hospital: "Hospital Municipal Souza Aguiar",
-                urso: "Marrom (Lisa)",
+                urso: "Marrom Caramelo (Lisa)",
                 fase: "producao",
                 statusTag: "Gravação EPROM",
                 envioFabrica: "17/11/2026 - 08:15",
@@ -610,7 +594,6 @@
             document.getElementById('kpi-novos-pedidos').innerText = 30 + novos.length;
             document.getElementById('kpi-em-producao').innerText = 81 + producao.length;
 
-            // 1. Renderizar Novos Pedidos
             listaNovos.innerHTML = novos.length ? novos.map(o => `
                 <div class="p-4 bg-blue-50/60 dark:bg-gray-700/80 rounded-2xl border border-blue-100 dark:border-gray-600 transition-all hover:shadow-md">
                     <div class="flex justify-between items-start mb-2">
@@ -634,7 +617,6 @@
                 </div>
             `).join('') : '<p class="text-center text-sm text-gray-400 py-8">Nenhum novo pedido aguardando triagem.</p>';
 
-            // 2. Renderizar Em Produção
             listaProducao.innerHTML = producao.length ? producao.map(o => `
                 <div class="p-4 bg-orange-50/50 dark:bg-gray-700/80 rounded-2xl border border-orange-100 dark:border-gray-600 transition-all hover:shadow-md">
                     <div class="flex justify-between items-start mb-2">
@@ -659,7 +641,6 @@
                 </div>
             `).join('') : '<p class="text-center text-sm text-gray-400 py-8">Nenhum pedido em produção no momento.</p>';
 
-            // 3. Renderizar Tabela Cronograma de Parceiras
             tabelaBody.innerHTML = adminOrders.map(o => `
                 <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-700/40 transition-colors">
                     <td class="py-3.5 px-4">
@@ -686,7 +667,7 @@
                 const hora = hoje.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
                 order.fase = 'producao';
                 order.statusTag = 'Na Fábrica (Pelúcia)';
-                order.envioFabrica = `18/11/2026 - ${hora}`;
+                order.envioFabrica = `${hoje.toLocaleDateString('pt-BR')} - ${hora}`;
                 order.transporteAtual = 'Enviado p/ Fábrica (Van #02)';
                 renderAdminDashboard();
             }
@@ -710,8 +691,9 @@
             order.statusTag = prox.tag;
             order.transporteAtual = prox.transp;
             if(prox.tag === 'Gravação EPROM' && order.envioAudio.includes('Prev.')) {
-                const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-                order.envioAudio = `18/11/2026 - ${hora}`;
+                const agora = new Date();
+                const hora = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                order.envioAudio = `${agora.toLocaleDateString('pt-BR')} - ${hora}`;
             }
             renderAdminDashboard();
         }
@@ -729,7 +711,7 @@
                     newView.classList.add('fade-in');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     
-                    if(viewId === 'view-paciente') { setTimeout(initBear3D, 100); popularCampos(); }
+                    if(viewId === 'view-paciente') { setTimeout(initBear3D, 120); popularCampos(); }
                     if(viewId === 'view-admin') { renderAdminDashboard(); setTimeout(initPCPChart, 300); }
                     if(viewId === 'view-sla-analysis') setTimeout(initSLAChart, 300);
                 }
@@ -790,7 +772,6 @@
             const rand = Math.floor(1000 + Math.random() * 9000);
             currentOrderCode = `URSO-${rand}`;
 
-            // Adiciona automaticamente o novo pedido à fila de Novos Pedidos do Admin
             const prazo = new Date();
             prazo.setDate(prazo.getDate() + 3);
             const prazoFormatado = prazo.toLocaleDateString('pt-BR') + ' - 15:00';
@@ -902,44 +883,327 @@
             pcpChartInstance = new Chart(ctx, { type: 'bar', data: { labels: ['Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro'], datasets: [{ label: 'OPs Processadas (PCP)', data: [120, 150, 180, 220, 260, 318], backgroundColor: '#FAEA53', borderRadius: 6 }, { label: 'Entregas (Last-Mile)', data: [110, 145, 175, 210, 255, 305], backgroundColor: '#2F9BFF', borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#374151' } } }, scales: { y: { beginAtZero: true, grid: { color: document.documentElement.classList.contains('dark') ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }, ticks: { color: document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280' } }, x: { grid: { display: false }, ticks: { color: document.documentElement.classList.contains('dark') ? '#9ca3af' : '#6b7280' } } } } });
         }
 
-        // --- URSO 3D & AUDIO ---
+        // ==========================================
+        //  URSO 3D FOFO (ESTILO REFERÊNCIA) & ÁUDIO
+        // ==========================================
         let bearScene, bearCamera, bearRenderer, bearGroup, bearMaterial, bearInitialized = false;
+        let bearBounceOffset = 0;
+
+        // Cria cápsula macia contínua compatível com Three.js r128 (sem emendas)
+        function createSmoothCapsule(rBottom, rTop, bodyLength, material) {
+            const points = [];
+            const halfLen = bodyLength / 2;
+            const steps = 14;
+
+            for (let i = 0; i <= steps; i++) {
+                const theta = -Math.PI / 2 + (i / steps) * (Math.PI / 2);
+                const x = Math.max(0, Math.cos(theta) * rBottom);
+                const y = -halfLen + Math.sin(theta) * rBottom;
+                points.push(new THREE.Vector2(x, y));
+            }
+            for (let i = 0; i <= steps; i++) {
+                const theta = (i / steps) * (Math.PI / 2);
+                const x = Math.max(0, Math.cos(theta) * rTop);
+                const y = halfLen + Math.sin(theta) * rTop;
+                points.push(new THREE.Vector2(x, y));
+            }
+
+            const geo = new THREE.LatheGeometry(points, 36);
+            geo.computeVertexNormals();
+            return new THREE.Mesh(geo, material);
+        }
+
+        // Cria o detalhe branco em meia-lua curvado no peito
+        function createChestCrescent(material) {
+            const shape = new THREE.Shape();
+            shape.moveTo(-0.26, 0.08);
+            shape.quadraticCurveTo(0, -0.23, 0.26, 0.08);
+            shape.quadraticCurveTo(0, -0.05, -0.26, 0.08);
+
+            const geo = new THREE.ExtrudeGeometry(shape, {
+                depth: 0.02,
+                bevelEnabled: true,
+                bevelThickness: 0.012,
+                bevelSize: 0.01,
+                bevelSegments: 3,
+                curveSegments: 24
+            });
+
+            // Ajusta os vértices à curvatura do tronco (rx=0.77, ry=0.87, rz=0.66, centroY=0.06)
+            const pos = geo.attributes.position;
+            const patchCenterY = 0.16;
+            for (let i = 0; i < pos.count; i++) {
+                const vx = pos.getX(i);
+                const vy = pos.getY(i);
+                const vz = pos.getZ(i);
+                const worldY = vy + patchCenterY;
+                const nx = vx / 0.77;
+                const ny = (worldY - 0.06) / 0.87;
+                const inside = Math.max(0.05, 1 - nx * nx - ny * ny);
+                const surfaceZ = 0.66 * Math.sqrt(inside);
+                pos.setXYZ(i, vx, worldY, surfaceZ + vz - 0.008);
+            }
+            geo.computeVertexNormals();
+            return new THREE.Mesh(geo, material);
+        }
+
         function initBear3D() {
-            const container = document.getElementById('bear-3d-container'); if(bearInitialized || container.innerHTML !== "") return; bearInitialized = true;
-            const width = container.clientWidth, height = container.clientHeight; bearScene = new THREE.Scene(); bearCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100); bearCamera.position.set(0, 1, 6);
-            bearRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); bearRenderer.setSize(width, height); container.appendChild(bearRenderer.domElement);
-            const controls = new THREE.OrbitControls(bearCamera, bearRenderer.domElement); controls.enablePan = false; controls.minDistance = 3; controls.maxDistance = 10;
-            bearScene.add(new THREE.AmbientLight(0xffffff, 0.7)); const dirLight = new THREE.DirectionalLight(0xffffff, 0.5); dirLight.position.set(5, 10, 7); bearScene.add(dirLight);
-            bearGroup = new THREE.Group(); bearMaterial = new THREE.MeshLambertMaterial({ color: 0x8B4513 });
-            const body = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), bearMaterial); body.scale.y = 1.2; bearGroup.add(body); const head = new THREE.Mesh(new THREE.SphereGeometry(0.75, 32, 32), bearMaterial); head.position.y = 1.5; bearGroup.add(head);
-            const earGeo = new THREE.SphereGeometry(0.3, 32, 32); const earL = new THREE.Mesh(earGeo, bearMaterial); earL.position.set(-0.6, 2.0, 0); bearGroup.add(earL); const earR = new THREE.Mesh(earGeo, bearMaterial); earR.position.set(0.6, 2.0, 0); bearGroup.add(earR);
-            const snout = new THREE.Mesh(new THREE.SphereGeometry(0.35, 32, 32), new THREE.MeshLambertMaterial({ color: 0xffe4b5 })); snout.position.set(0, 1.4, 0.65); snout.scale.z = 0.5; bearGroup.add(snout); const nose = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), new THREE.MeshBasicMaterial({ color: 0x000000 })); nose.position.set(0, 1.5, 0.8); bearGroup.add(nose);
-            const eyeGeo = new THREE.SphereGeometry(0.08, 16, 16); const eyeL = new THREE.Mesh(eyeGeo, new THREE.MeshBasicMaterial({ color: 0x000000 })); eyeL.position.set(-0.3, 1.7, 0.65); bearGroup.add(eyeL); const eyeR = new THREE.Mesh(eyeGeo, new THREE.MeshBasicMaterial({ color: 0x000000 })); eyeR.position.set(0.3, 1.7, 0.65); bearGroup.add(eyeR);
-            const armGeo = new THREE.SphereGeometry(0.35, 32, 32); const armL = new THREE.Mesh(armGeo, bearMaterial); armL.scale.y = 1.6; armL.position.set(-1.1, 0.6, 0.2); armL.rotation.z = Math.PI / 5; bearGroup.add(armL); const armR = new THREE.Mesh(armGeo, bearMaterial); armR.scale.y = 1.6; armR.position.set(1.1, 0.6, 0.2); armR.rotation.z = -Math.PI / 5; bearGroup.add(armR);
-            const legL = new THREE.Mesh(armGeo, bearMaterial); legL.scale.y = 1.6; legL.position.set(-0.6, -1, 0.4); legL.rotation.x = -Math.PI / 4; bearGroup.add(legL); const legR = new THREE.Mesh(armGeo, bearMaterial); legR.scale.y = 1.6; legR.position.set(0.6, -1, 0.4); legR.rotation.x = -Math.PI / 4; bearGroup.add(legR);
-            bearScene.add(bearGroup); bearGroup.position.y = -0.5;
-            const animate = function () { requestAnimationFrame(animate); controls.update(); bearRenderer.render(bearScene, bearCamera); }; animate();
+            const container = document.getElementById('bear-3d-container');
+            if(bearInitialized || container.innerHTML !== "") return;
+            bearInitialized = true;
+
+            const width = container.clientWidth || 500;
+            const height = container.clientHeight || 550;
+
+            bearScene = new THREE.Scene();
+            bearCamera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
+            bearCamera.position.set(0, 0.35, 6.2);
+
+            bearRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            bearRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            bearRenderer.setSize(width, height);
+            container.appendChild(bearRenderer.domElement);
+
+            const controls = new THREE.OrbitControls(bearCamera, bearRenderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.07;
+            controls.enablePan = false;
+            controls.minDistance = 3.5;
+            controls.maxDistance = 9.5;
+            controls.target.set(0, 0.1, 0);
+
+            // Iluminação suave de estúdio (efeito argila/pelúcia fosca)
+            bearScene.add(new THREE.AmbientLight(0xfff9f5, 0.62));
+            const hemiLight = new THREE.HemisphereLight(0xffffff, 0xd8b8a8, 0.48);
+            hemiLight.position.set(0, 6, 0);
+            bearScene.add(hemiLight);
+
+            const keyLight = new THREE.DirectionalLight(0xfffaf4, 0.55);
+            keyLight.position.set(4, 7, 7);
+            bearScene.add(keyLight);
+
+            const rimLight = new THREE.DirectionalLight(0xfff0e6, 0.32);
+            rimLight.position.set(-5, 3, -5);
+            bearScene.add(rimLight);
+
+            bearGroup = new THREE.Group();
+
+            // Materiais
+            bearMaterial = new THREE.MeshStandardMaterial({
+                color: 0xFAD7C2, // Creme Pêssego idêntico à referência
+                roughness: 0.78,
+                metalness: 0.02
+            });
+            const darkBrownMat = new THREE.MeshStandardMaterial({
+                color: 0x3D231B,
+                roughness: 0.32,
+                metalness: 0.05
+            });
+            const blushMat = new THREE.MeshStandardMaterial({
+                color: 0xF48B94,
+                roughness: 0.85,
+                metalness: 0.0
+            });
+            const chestMat = new THREE.MeshStandardMaterial({
+                color: 0xFFF9F4,
+                roughness: 0.85,
+                metalness: 0.0
+            });
+            const eyeShineMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+            // 1. Cabeça grande e fofa (estilo chibi)
+            const head = new THREE.Mesh(new THREE.SphereGeometry(0.92, 48, 48), bearMaterial);
+            head.scale.set(1.12, 0.96, 0.98);
+            head.position.set(0, 1.25, 0);
+            bearGroup.add(head);
+
+            // Volume suave do focinho
+            const muzzle = new THREE.Mesh(new THREE.SphereGeometry(0.24, 32, 32), bearMaterial);
+            muzzle.scale.set(1.28, 0.86, 0.58);
+            muzzle.position.set(0, 1.09, 0.81);
+            bearGroup.add(muzzle);
+
+            // 2. Orelhas redondas com arco marrom-escuro interno
+            [-1, 1].forEach(side => {
+                const earGroup = new THREE.Group();
+                earGroup.position.set(side * 0.74, 1.92, -0.02);
+                earGroup.rotation.z = -side * 0.42;
+
+                const earOuter = new THREE.Mesh(new THREE.SphereGeometry(0.31, 32, 32), bearMaterial);
+                earOuter.scale.set(1.0, 1.0, 0.62);
+                earGroup.add(earOuter);
+
+                const earArch = new THREE.Mesh(
+                    new THREE.TorusGeometry(0.14, 0.036, 16, 28, Math.PI * 1.15),
+                    darkBrownMat
+                );
+                earArch.position.set(0, -0.01, 0.165);
+                earArch.rotation.z = -0.075 * Math.PI;
+                earGroup.add(earArch);
+
+                bearGroup.add(earGroup);
+            });
+
+            // 3. Olhos escuros com pontinho de brilho
+            [-1, 1].forEach(side => {
+                const eye = new THREE.Mesh(new THREE.SphereGeometry(0.095, 24, 24), darkBrownMat);
+                eye.scale.set(1.0, 1.08, 0.68);
+                eye.position.set(side * 0.36, 1.24, 0.835);
+                bearGroup.add(eye);
+
+                const shine = new THREE.Mesh(new THREE.SphereGeometry(0.024, 12, 12), eyeShineMat);
+                shine.position.set(side * 0.36 + 0.025, 1.275, 0.895);
+                bearGroup.add(shine);
+            });
+
+            // 4. Nariz oval marrom-escuro
+            const nose = new THREE.Mesh(new THREE.SphereGeometry(0.13, 24, 24), darkBrownMat);
+            nose.scale.set(1.25, 0.82, 0.72);
+            nose.position.set(0, 1.14, 0.925);
+            bearGroup.add(nose);
+
+            // 5. Bochechas rosadas ovais
+            [-1, 1].forEach(side => {
+                const cheek = new THREE.Mesh(new THREE.SphereGeometry(0.11, 24, 24), blushMat);
+                cheek.scale.set(1.32, 0.76, 0.35);
+                cheek.position.set(side * 0.55, 1.05, 0.745);
+                cheek.rotation.y = side * 0.56;
+                bearGroup.add(cheek);
+            });
+
+            // 6. Tronco compacto e arredondado
+            const body = new THREE.Mesh(new THREE.SphereGeometry(0.76, 48, 48), bearMaterial);
+            body.scale.set(1.01, 1.14, 0.87);
+            body.position.set(0, 0.06, 0);
+            bearGroup.add(body);
+
+            // 7. Meia-lua branca no peito
+            const crescent = createChestCrescent(chestMat);
+            bearGroup.add(crescent);
+
+            // 8. Braços levantados em pose alegre
+            [-1, 1].forEach(side => {
+                const arm = createSmoothCapsule(0.21, 0.25, 0.78, bearMaterial);
+                arm.position.set(side * 0.82, 0.70, 0.06);
+                arm.rotation.z = -side * 0.78;
+                arm.rotation.x = 0.12;
+                bearGroup.add(arm);
+            });
+
+            // 9. Perninhas curtinhas e fofas
+            [-1, 1].forEach(side => {
+                const leg = createSmoothCapsule(0.22, 0.24, 0.44, bearMaterial);
+                leg.position.set(side * 0.31, -0.82, 0.02);
+                leg.rotation.z = side * 0.04;
+                bearGroup.add(leg);
+            });
+
+            // 10. Rabinho redondo nas costas
+            const tail = new THREE.Mesh(new THREE.SphereGeometry(0.17, 24, 24), bearMaterial);
+            tail.position.set(0, -0.40, -0.62);
+            bearGroup.add(tail);
+
+            bearGroup.position.y = -0.42;
+            bearScene.add(bearGroup);
+
+            // Responsividade do canvas 3D
+            window.addEventListener('resize', () => {
+                if(!bearRenderer || !container.clientWidth) return;
+                bearCamera.aspect = container.clientWidth / container.clientHeight;
+                bearCamera.updateProjectionMatrix();
+                bearRenderer.setSize(container.clientWidth, container.clientHeight);
+            });
+
+            const clock = new THREE.Clock();
+            const animate = function () {
+                requestAnimationFrame(animate);
+                const t = clock.getElapsedTime();
+                // Movimento suave de respiração + pulinho ao tocar áudio
+                bearBounceOffset *= 0.88;
+                bearGroup.position.y = -0.42 + Math.sin(t * 2.2) * 0.045 + bearBounceOffset;
+                bearGroup.rotation.y = Math.sin(t * 0.7) * 0.06;
+                controls.update();
+                bearRenderer.render(bearScene, bearCamera);
+            };
+            animate();
         }
 
         function changeBearColor(hexColor, colorName) {
             if(colorName) selectedBearColorName = colorName;
             if(!bearMaterial) return;
-            bearMaterial.color.setHex(hexColor); bearMaterial.map = null; bearMaterial.needsUpdate = true;
+            bearMaterial.color.setHex(hexColor);
+            bearMaterial.map = null;
+            bearMaterial.needsUpdate = true;
         }
+
         function changeBearPattern(type) {
             selectedBearPatternName = type === 'nenhuma' ? 'Lisa' : (type === 'bolinhas' ? 'Bolinhas' : 'Listras');
             if(!bearMaterial) return;
-            if(type === 'nenhuma') { bearMaterial.map = null; bearMaterial.needsUpdate = true; return; }
-            const canvas = document.createElement('canvas'); canvas.width = 256; canvas.height = 256; const ctx = canvas.getContext('2d'); ctx.fillStyle = '#' + bearMaterial.color.getHexString(); ctx.fillRect(0, 0, 256, 256);
-            if(type === 'bolinhas') { ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'; for(let i=0; i<6; i++) for(let j=0; j<6; j++) { ctx.beginPath(); ctx.arc(i*50 + 15, j*50 + 15, 12, 0, Math.PI*2); ctx.fill(); } } 
-            else if(type === 'listras') { ctx.fillStyle = 'rgba(255, 255, 255, 0.6)'; for(let i=0; i<256; i+=30) ctx.fillRect(i, 0, 10, 256); }
-            const texture = new THREE.CanvasTexture(canvas); texture.wrapS = THREE.RepeatWrapping; texture.wrapT = THREE.RepeatWrapping; texture.repeat.set(2, 2); bearMaterial.map = texture; bearMaterial.needsUpdate = true;
+            if(type === 'nenhuma') {
+                bearMaterial.map = null;
+                bearMaterial.needsUpdate = true;
+                return;
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#' + bearMaterial.color.getHexString();
+            ctx.fillRect(0, 0, 256, 256);
+
+            if(type === 'bolinhas') {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+                for(let i = 0; i < 6; i++) {
+                    for(let j = 0; j < 6; j++) {
+                        ctx.beginPath();
+                        ctx.arc(i * 46 + 18, j * 46 + 18, 10, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+            } else if(type === 'listras') {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.58)';
+                for(let i = 0; i < 256; i += 32) ctx.fillRect(i, 0, 11, 256);
+            }
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            texture.repeat.set(2, 2);
+            bearMaterial.map = texture;
+            bearMaterial.needsUpdate = true;
         }
 
         let mediaRecorder, audioChunks = [], bearAudio = new Audio();
-        async function startRecording() { try { const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); mediaRecorder = new MediaRecorder(stream); audioChunks = []; mediaRecorder.ondataavailable = e => audioChunks.push(e.data); mediaRecorder.onstop = () => { bearAudio.src = URL.createObjectURL(new Blob(audioChunks, { type: 'audio/mp3' })); document.getElementById('play-audio-btn').classList.remove('hidden'); }; mediaRecorder.start(); document.getElementById('btn-record').classList.add('hidden'); document.getElementById('btn-stop').classList.remove('hidden'); } catch(err) { alert('Permita o uso do microfone no navegador!'); } }
-        function stopRecording() { if(mediaRecorder && mediaRecorder.state !== "inactive") { mediaRecorder.stop(); document.getElementById('btn-record').classList.remove('hidden'); document.getElementById('btn-stop').classList.add('hidden'); } }
-        function playBearAudio() { if(bearAudio.src) { if(bearGroup) { bearGroup.position.y = -0.3; setTimeout(() => { bearGroup.position.y = -0.5; }, 200); } bearAudio.play(); } }
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+                mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+                mediaRecorder.onstop = () => {
+                    bearAudio.src = URL.createObjectURL(new Blob(audioChunks, { type: 'audio/mp3' }));
+                    document.getElementById('play-audio-btn').classList.remove('hidden');
+                };
+                mediaRecorder.start();
+                document.getElementById('btn-record').classList.add('hidden');
+                document.getElementById('btn-stop').classList.remove('hidden');
+            } catch(err) {
+                alert('Permita o uso do microfone no navegador!');
+            }
+        }
+        function stopRecording() {
+            if(mediaRecorder && mediaRecorder.state !== "inactive") {
+                mediaRecorder.stop();
+                document.getElementById('btn-record').classList.remove('hidden');
+                document.getElementById('btn-stop').classList.add('hidden');
+            }
+        }
+        function playBearAudio() {
+            if(bearAudio.src) {
+                bearBounceOffset = 0.25;
+                bearAudio.play();
+            }
+        }
     </script>
 </body>
 </html>
