@@ -53,9 +53,10 @@
         .recording { animation: pulse-red 1.5s infinite; background-color: #ef4444; color: white; border-color: #ef4444; }
         
         .progress-bar-fill { transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
-        .step-active { @apply bg-alergria-blue text-white border-alergria-blue shadow-lg scale-110 transition-all; }
-        .step-completed { @apply bg-green-500 text-white border-green-500 shadow-md transition-all; }
-        .step-pending { @apply bg-gray-100 text-gray-400 border-gray-200 dark:bg-gray-700 dark:text-gray-500 dark:border-gray-600 transition-all; }
+        .step-active { background-color: #2F9BFF; color: #ffffff; border-color: #2F9BFF; box-shadow: 0 10px 15px -3px rgba(47, 155, 255, 0.3); transform: scale(1.1); transition: all 0.3s; }
+        .step-completed { background-color: #22c55e; color: #ffffff; border-color: #22c55e; box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.25); transition: all 0.3s; }
+        .step-pending { background-color: #f3f4f6; color: #9ca3af; border-color: #e5e7eb; transition: all 0.3s; }
+        .dark .step-pending { background-color: #374151; color: #6b7280; border-color: #4b5563; }
         
         .pcp-log-scroll::-webkit-scrollbar { width: 6px; }
         .pcp-log-scroll::-webkit-scrollbar-track { background: transparent; }
@@ -126,11 +127,11 @@
                     <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-3xl shadow-lg border border-white/40 dark:border-gray-700/50">
                         <h3 class="font-fredoka text-xl font-bold text-alergria-blue mb-4">1. Especificação de Cor</h3>
                         <div class="flex flex-wrap gap-4">
-                            <button onclick="changeBearColor(0x8B4513)" class="w-12 h-12 rounded-full bg-[#8B4513] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0xFFB6C1)" class="w-12 h-12 rounded-full bg-[#FFB6C1] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0x87CEEB)" class="w-12 h-12 rounded-full bg-[#87CEEB] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0xFFE4B5)" class="w-12 h-12 rounded-full bg-[#FFE4B5] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0xE6E6FA)" class="w-12 h-12 rounded-full bg-[#E6E6FA] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0x8B4513, 'Marrom')" class="w-12 h-12 rounded-full bg-[#8B4513] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0xFFB6C1, 'Rosa')" class="w-12 h-12 rounded-full bg-[#FFB6C1] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0x87CEEB, 'Azul')" class="w-12 h-12 rounded-full bg-[#87CEEB] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0xFFE4B5, 'Creme')" class="w-12 h-12 rounded-full bg-[#FFE4B5] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0xE6E6FA, 'Lilás')" class="w-12 h-12 rounded-full bg-[#E6E6FA] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
                         </div>
                     </div>
                     
@@ -152,7 +153,7 @@
                         <button id="play-audio-btn" onclick="playBearAudio()" class="hidden w-full mt-4 bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400 border border-red-200 dark:border-red-900/50 font-bold py-3 rounded-xl hover:bg-red-100 transition-colors"><i class="fa-solid fa-play mr-2"></i> Testar Reprodução do Chip</button>
                     </div>
 
-                    <!-- PASSO 4 ATUALIZADO: Destinatário com Input livre -->
+                    <!-- PASSO 4: Destinatário com Input livre -->
                     <div class="bg-white/80 dark:bg-gray-800/80 p-6 rounded-3xl shadow-lg border border-white/40 dark:border-gray-700/50">
                         <h3 class="font-fredoka text-xl font-bold text-alergria-orange mb-4">4. Destinatário e Local</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -164,7 +165,6 @@
                                 <label class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-2">Unidade Hospitalar (RJ)</label>
                                 <select id="paciente-hospital" class="w-full p-3 rounded-xl border border-gray-200 focus:border-alergria-orange bg-gray-50 dark:bg-gray-700 outline-none text-gray-700 dark:text-gray-200 font-semibold cursor-pointer">
                                     <option value="">Selecione o hospital...</option>
-                                    <!-- Injetado via JS -->
                                 </select>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                     <!-- PASSO 5: EMISSÃO OP -->
                     <div class="bg-gradient-to-r from-green-50 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 p-6 rounded-3xl shadow-lg border border-green-200 dark:border-green-800">
                         <h3 class="font-fredoka text-xl font-bold text-green-700 dark:text-green-400 mb-4">5. Emissão de Ordem (OP)</h3>
-                        <p class="text-sm text-green-800 dark:text-green-300 mb-4">Ao finalizar, o sistema ERP irá gerar um código de rastreio para acompanhar a esterilização e o roteamento logístico.</p>
+                        <p class="text-sm text-green-800 dark:text-green-300 mb-4">Ao finalizar, o sistema ERP irá gerar um código de rastreio e enviar o pedido direto para a fila da Diretoria.</p>
                         <button onclick="finalizarPedido()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-md transition-colors text-lg active:scale-95"><i class="fa-solid fa-check-double mr-2"></i> Emitir Ordem de Produção</button>
                     </div>
                 </div>
@@ -288,25 +288,29 @@
             </div>
         </section>
 
-        <!-- DASHBOARD DONOS DO SITE (Admin Principal) -->
+        <!-- DASHBOARD DONOS DO SITE (Admin Principal - COMPLETO) -->
         <section id="view-admin" class="view-section py-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-                <div><h2 class="font-fredoka text-3xl font-bold text-gray-800 dark:text-white">Dashboard Diretoria <span class="text-alergria-blue text-lg">v2.0</span></h2><p class="text-gray-500 dark:text-gray-400">Controlo de Logística e Pedidos.</p></div>
+                <div>
+                    <h2 class="font-fredoka text-3xl font-bold text-gray-800 dark:text-white">Dashboard Diretoria <span class="text-alergria-blue text-lg">v3.0 ERP</span></h2>
+                    <p class="text-gray-500 dark:text-gray-400">Gestão de Pedidos, Produção, Prazos Hospitalares e Transporte entre Parceiras.</p>
+                </div>
                 <button onclick="showView('view-home')" class="bg-red-100 text-red-600 font-bold px-6 py-2 rounded-full hover:bg-red-200 transition-colors border border-red-200"><i class="fa-solid fa-power-off mr-2"></i> Encerrar Sessão</button>
             </div>
             
+            <!-- 4 KPIs PRINCIPAIS -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-md border-l-4 border-green-500">
                     <p class="text-gray-500 font-bold text-sm mb-1 uppercase tracking-wide">Ursos Entregues</p>
                     <div class="flex items-end justify-between"><h3 class="text-4xl font-black text-gray-800 dark:text-white">1.248</h3><span class="text-green-500 text-sm font-bold"><i class="fa-solid fa-arrow-trend-up"></i> +12%</span></div>
                 </div>
                 <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-md border-l-4 border-alergria-yellow">
-                    <p class="text-gray-500 font-bold text-sm mb-1 uppercase tracking-wide">Em Produção (Fila)</p>
-                    <div class="flex items-end justify-between"><h3 class="text-4xl font-black text-gray-800 dark:text-white">84</h3><span class="text-gray-400 text-sm"><i class="fa-solid fa-gears"></i> Ativo</span></div>
+                    <p class="text-gray-500 font-bold text-sm mb-1 uppercase tracking-wide">Em Produção (Ativos)</p>
+                    <div class="flex items-end justify-between"><h3 id="kpi-em-producao" class="text-4xl font-black text-gray-800 dark:text-white">84</h3><span class="text-gray-400 text-sm"><i class="fa-solid fa-gears"></i> Chão de Fábrica</span></div>
                 </div>
                 <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-md border-l-4 border-alergria-blue">
-                    <p class="text-gray-500 font-bold text-sm mb-1 uppercase tracking-wide">Aguardando Envio</p>
-                    <div class="flex items-end justify-between"><h3 class="text-4xl font-black text-gray-800 dark:text-white">32</h3><span class="text-alergria-blue text-sm font-bold"><i class="fa-solid fa-truck"></i> Hoje</span></div>
+                    <p class="text-gray-500 font-bold text-sm mb-1 uppercase tracking-wide">Novos Pedidos (Fila)</p>
+                    <div class="flex items-end justify-between"><h3 id="kpi-novos-pedidos" class="text-4xl font-black text-gray-800 dark:text-white">32</h3><span class="text-alergria-blue text-sm font-bold"><i class="fa-solid fa-inbox"></i> Triagem</span></div>
                 </div>
                 <!-- CARD SLA CLICÁVEL -->
                 <div onclick="showView('view-sla-analysis')" class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-md border-l-4 border-alergria-pink cursor-pointer transform hover:-translate-y-1 hover:shadow-lg transition-all group relative">
@@ -316,17 +320,116 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- SEÇÃO 1: GRÁFICO + TRANSPORTE INTEREMPRESAS (Fábrica ⇄ Áudio ⇄ AlerGria) -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                <!-- Gráfico Volume Logístico -->
                 <div class="lg:col-span-2 bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
-                    <h3 class="font-bold text-xl text-gray-800 dark:text-white mb-4">Volume de Logística (Últimos 6 Meses)</h3>
+                    <h3 class="font-bold text-xl text-gray-800 dark:text-white mb-4"><i class="fa-solid fa-chart-column text-alergria-blue mr-2"></i> Volume de Logística (Últimos 6 Meses)</h3>
                     <div class="relative h-72 w-full"><canvas id="pcpChart"></canvas></div>
                 </div>
-                <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col">
-                    <h3 class="font-bold text-xl text-gray-800 dark:text-white mb-4">Fila de Novos Pedidos</h3>
-                    <div class="flex-1 overflow-y-auto pr-2 space-y-4">
-                        <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-2xl border border-gray-100 dark:border-gray-600"><div class="flex justify-between items-start mb-2"><span class="font-bold text-sm text-alergria-blue">#PED-8801</span><span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md font-bold">Produção</span></div><p class="text-sm font-bold text-gray-800 dark:text-gray-200">Urso 3D: Azul (Listras)</p><p class="text-xs text-gray-500 mb-3">Destino: Arthur - INCA</p></div>
-                        <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-2xl border border-gray-100 dark:border-gray-600"><div class="flex justify-between items-start mb-2"><span class="font-bold text-sm text-alergria-blue">#PED-8802</span><span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded-md font-bold">Esterilização</span></div><p class="text-sm font-bold text-gray-800 dark:text-gray-200">Urso 3D: Rosa (Bolinhas)</p><p class="text-xs text-gray-500 mb-3">Destino: Alice - Copa D'Or</p></div>
+
+                <!-- Painel de Transporte entre Parceiras -->
+                <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 dark:text-white mb-1"><i class="fa-solid fa-route text-alergria-orange mr-2"></i> Transporte Interempresas</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-5">Fluxo de cargas entre Fabricação, Áudio e Hub AlerGria.</p>
+
+                        <div class="space-y-4">
+                            <!-- Rota 1: Fábrica -> Empresa de Áudio -->
+                            <div class="p-3.5 rounded-2xl bg-orange-50/80 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800/50">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-extrabold text-alergria-orange uppercase"><i class="fa-solid fa-industry mr-1"></i> Fábrica ➔ Áudio</span>
+                                    <span class="text-[10px] font-bold bg-orange-200 dark:bg-orange-800 text-orange-800 dark:text-orange-100 px-2 py-0.5 rounded-full">Em Trânsito</span>
+                                </div>
+                                <p class="text-xs text-gray-700 dark:text-gray-300 font-semibold">Van #02 • Lote 12 pelúcias (PlushTech RJ)</p>
+                                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1"><i class="fa-regular fa-clock mr-1"></i> Chegada na SoundChip: <strong>Hoje, 16:30</strong></p>
+                            </div>
+
+                            <!-- Rota 2: Empresa de Áudio -> Nós (Hub AlerGria) -->
+                            <div class="p-3.5 rounded-2xl bg-pink-50/80 dark:bg-pink-900/20 border border-pink-200 dark:border-pink-800/50">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-extrabold text-alergria-pink uppercase"><i class="fa-solid fa-microchip mr-1"></i> Áudio ➔ Hub AlerGria</span>
+                                    <span class="text-[10px] font-bold bg-blue-100 dark:bg-blue-900 text-alergria-blue px-2 py-0.5 rounded-full">Coleta 17h</span>
+                                </div>
+                                <p class="text-xs text-gray-700 dark:text-gray-300 font-semibold">Furgão #05 • 9 ursos com EPROM gravado</p>
+                                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1"><i class="fa-solid fa-shield-virus mr-1"></i> Próxima etapa: <strong>Câmara UV-C (Nós)</strong></p>
+                            </div>
+
+                            <!-- Rota 3: Nós (Hub AlerGria) -> Hospitais -->
+                            <div class="p-3.5 rounded-2xl bg-green-50/80 dark:bg-green-900/20 border border-green-200 dark:border-green-800/50">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-extrabold text-green-600 dark:text-green-400 uppercase"><i class="fa-solid fa-truck-medical mr-1"></i> Hub AlerGria ➔ Hospitais</span>
+                                    <span class="text-[10px] font-bold bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-100 px-2 py-0.5 rounded-full">Rota Ativa</span>
+                                </div>
+                                <p class="text-xs text-gray-700 dark:text-gray-300 font-semibold">Veículo Refrigerado #01 • Lotes Selados</p>
+                                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1"><i class="fa-solid fa-hospital mr-1"></i> Entregas: <strong>INCA, Copa D'Or e CHN</strong></p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO 2: FILAS SEPARADAS (NOVOS PEDIDOS vs EM PRODUÇÃO) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                
+                <!-- COLUNA 1: NOVOS PEDIDOS (AGUARDANDO ENVIO ÀS PARCEIRAS) -->
+                <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col">
+                    <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-100 dark:border-gray-700">
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white"><i class="fa-solid fa-bell text-alergria-blue mr-2"></i> Novos Pedidos</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Aguardando liberação para Fabricação e Empresa de Áudio.</p>
+                        </div>
+                        <span id="badge-count-novos" class="bg-blue-100 dark:bg-blue-900 text-alergria-blue font-extrabold text-xs px-3 py-1 rounded-full">0 pedidos</span>
+                    </div>
+                    
+                    <div id="lista-novos-pedidos" class="space-y-4 max-h-[420px] overflow-y-auto pcp-log-scroll pr-2">
+                        <!-- Renderizado via JS -->
+                    </div>
+                </div>
+
+                <!-- COLUNA 2: JÁ EM PRODUÇÃO (FÁBRICA / ÁUDIO / HUB ALERGRIA) -->
+                <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col">
+                    <div class="flex justify-between items-center mb-4 pb-3 border-b border-gray-100 dark:border-gray-700">
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800 dark:text-white"><i class="fa-solid fa-gears text-alergria-orange mr-2"></i> Em Produção</h3>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Pedidos em manufatura, gravação de áudio ou assepsia UV-C.</p>
+                        </div>
+                        <span id="badge-count-producao" class="bg-orange-100 dark:bg-orange-900/40 text-alergria-orange font-extrabold text-xs px-3 py-1 rounded-full">0 pedidos</span>
+                    </div>
+                    
+                    <div id="lista-em-producao" class="space-y-4 max-h-[420px] overflow-y-auto pcp-log-scroll pr-2">
+                        <!-- Renderizado via JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SEÇÃO 3: CRONOGRAMA DE ENVIO PARA CADA PARCEIRA & PRAZOS HOSPITALARES -->
+            <div class="bg-white/90 dark:bg-gray-800/90 p-6 md:p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
+                    <div>
+                        <h3 class="font-bold text-xl text-gray-800 dark:text-white"><i class="fa-solid fa-calendar-check text-alergria-pink mr-2"></i> Cronograma de Envios por Parceira & Prazos de Entrega</h3>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Controle exato das datas de envio para a Fábrica de Pelúcias, Empresa de Áudio, Hub AlerGria e previsão no Hospital.</p>
+                    </div>
+                    <span class="text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1.5 rounded-full self-start md:self-auto"><i class="fa-solid fa-sync mr-1 text-alergria-blue"></i> Sincronizado com ERP</span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[850px]">
+                        <thead>
+                            <tr class="border-b-2 border-gray-200 dark:border-gray-700 text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                                <th class="py-3 px-4">Ordem / Cliente</th>
+                                <th class="py-3 px-4">Hospital de Destino</th>
+                                <th class="py-3 px-4"><i class="fa-solid fa-industry text-alergria-orange mr-1"></i> Envio p/ Fabricação</th>
+                                <th class="py-3 px-4"><i class="fa-solid fa-microchip text-alergria-pink mr-1"></i> Envio p/ Áudio</th>
+                                <th class="py-3 px-4"><i class="fa-solid fa-truck text-alergria-blue mr-1"></i> Transporte Atual</th>
+                                <th class="py-3 px-4"><i class="fa-solid fa-hospital-user text-green-500 mr-1"></i> Prazo no Hospital</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-parceiras-body" class="divide-y divide-gray-100 dark:divide-gray-700 text-sm">
+                            <!-- Renderizado via JS -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -343,13 +446,11 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <!-- Gráfico de Rosca -->
                 <div class="bg-white/90 dark:bg-gray-800/90 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col items-center justify-center">
                     <h3 class="font-bold text-xl text-gray-800 dark:text-white mb-6 text-center">Matriz de Gargalos Logísticos</h3>
                     <div class="relative w-full max-w-[350px] aspect-square"><canvas id="slaChart"></canvas></div>
                     <p class="text-xs text-gray-400 mt-6 text-center italic">*Baseado nos registos ERP dos últimos 30 dias de produção.</p>
                 </div>
-                <!-- Explicações Técnicas (RCA) -->
                 <div class="space-y-6">
                     <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-lg border-l-4 border-alergria-pink flex items-start space-x-4">
                         <div class="bg-pink-100 dark:bg-pink-900/30 text-alergria-pink p-3 rounded-xl text-2xl"><i class="fa-solid fa-microchip"></i></div>
@@ -357,11 +458,11 @@
                     </div>
                     <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-lg border-l-4 border-teal-500 flex items-start space-x-4">
                         <div class="bg-teal-50 dark:bg-teal-900/30 text-teal-500 p-3 rounded-xl text-2xl"><i class="fa-solid fa-viruses"></i></div>
-                        <div><h4 class="font-bold text-gray-800 dark:text-white text-lg">30% - Fila de Assepsia (Câmara UV-C)</h4><p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Saturação da capacidade. Em picos de procura, a câmara de ultravioleta e ozónio atingiu o seu limite físico de lotes simultâneos (gargalo de *throughput*), atrasando o *Lead Time*.</p></div>
+                        <div><h4 class="font-bold text-gray-800 dark:text-white text-lg">30% - Fila de Assepsia (Câmara UV-C)</h4><p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Saturação da capacidade. Em picos de procura, a câmara de ultravioleta e ozónio atingiu o seu limite físico de lotes simultâneos (gargalo de throughput), atrasando o Lead Time.</p></div>
                     </div>
                     <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-lg border-l-4 border-alergria-orange flex items-start space-x-4">
                         <div class="bg-orange-50 dark:bg-orange-900/30 text-alergria-orange p-3 rounded-xl text-2xl"><i class="fa-solid fa-truck-fast"></i></div>
-                        <div><h4 class="font-bold text-gray-800 dark:text-white text-lg">15% - Logística Externa (*Last-Mile*)</h4><p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Imprevistos de roteirização externa. Atrasos causados por tráfego urbano pesado ou pela demora nas docas de receção hospitalar aquando da entrega dos donativos estéreis.</p></div>
+                        <div><h4 class="font-bold text-gray-800 dark:text-white text-lg">15% - Logística Externa (Last-Mile)</h4><p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Imprevistos de roteirização externa. Atrasos causados por tráfego urbano pesado ou pela demora nas docas de receção hospitalar aquando da entrega dos donativos estéreis.</p></div>
                     </div>
                     <div class="bg-white/90 dark:bg-gray-800/90 p-6 rounded-3xl shadow-lg border-l-4 border-alergria-blue flex items-start space-x-4">
                         <div class="bg-blue-50 dark:bg-blue-900/30 text-alergria-blue p-3 rounded-xl text-2xl"><i class="fa-solid fa-scissors"></i></div>
@@ -374,7 +475,6 @@
     </main>
 
     <!-- MODAIS DO SISTEMA -->
-    <!-- Modal Pedido Sucesso -->
     <div id="modal-pedido-sucesso" class="fixed inset-0 z-[100] hidden items-center justify-center bg-gray-900/80 backdrop-blur-sm transition-opacity">
         <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-2xl max-w-sm w-full relative transform scale-95 transition-transform duration-300 border-t-8 border-green-500" id="modal-pedido-content">
             <div class="text-center mb-6"><i class="fa-solid fa-circle-check text-5xl text-green-500 mb-4"></i><h3 class="font-fredoka text-2xl font-bold text-gray-800 dark:text-white">Ordem Gerada!</h3></div>
@@ -385,7 +485,6 @@
         </div>
     </div>
     
-    <!-- Modal Laudo de Assepsia -->
     <div id="modal-laudo" class="fixed inset-0 z-[100] hidden items-center justify-center bg-gray-900/80 backdrop-blur-sm transition-opacity">
         <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-2xl max-w-lg w-full relative transform scale-95 transition-transform duration-300 border-t-8 border-teal-500" id="modal-laudo-content">
             <button onclick="closeLaudoModal()" class="absolute top-4 right-5 text-gray-400 hover:text-red-500 text-2xl"><i class="fa-solid fa-xmark"></i></button>
@@ -400,7 +499,6 @@
         </div>
     </div>
 
-    <!-- Modal Fluxograma PCP -->
     <div id="modal-fluxograma" class="fixed inset-0 z-[100] hidden items-center justify-center bg-gray-900/60 backdrop-blur-sm transition-opacity">
         <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-2xl max-w-md w-full relative transform scale-95 transition-transform duration-300" id="modal-content">
             <button onclick="closeModal()" class="absolute top-4 right-5 text-gray-400 hover:text-red-500 text-2xl transition-colors"><i class="fa-solid fa-xmark"></i></button>
@@ -412,16 +510,210 @@
     </div>
 
     <script>
-        // --- INICIALIZAÇÃO DE VARIÁVEIS E HOSPITAIS ---
+        // --- ESTADO GLOBAL DO SISTEMA ERP ---
         let currentOrderCode = '';
-        
-        const hospitaisRJ = ["INCA - Instituto Nacional de Câncer", "Hospital Municipal Souza Aguiar", "Hospital Municipal Miguel Couto", "Hospital Municipal Salgado Filho", "Hospital Municipal Lourenço Jorge", "Hospital Copa D'Or", "Hospital Barra D'Or", "Hospital Quinta D'Or", "Hospital Norte D'Or", "Hospital Copa Star", "Hospital São Lucas Copacabana", "Hospital Samaritano Botafogo", "Hospital Samaritano Barra", "Hospital Vitória", "Hospital Pasteur", "Hospital Rio Mar", "Casa de Saúde São José", "Complexo Hospitalar de Niterói (CHN)", "Hospital de Clínicas de Jacarepaguá", "Hospital da Lagoa"];
+        let selectedBearColorName = 'Marrom';
+        let selectedBearPatternName = 'Lisa';
+
+        const hospitaisRJ = [
+            "INCA - Instituto Nacional de Câncer", "Hospital Municipal Souza Aguiar", "Hospital Municipal Miguel Couto",
+            "Hospital Municipal Salgado Filho", "Hospital Municipal Lourenço Jorge", "Hospital Copa D'Or",
+            "Hospital Barra D'Or", "Hospital Quinta D'Or", "Hospital Norte D'Or", "Hospital Copa Star",
+            "Hospital São Lucas Copacabana", "Hospital Samaritano Botafogo", "Hospital Samaritano Barra",
+            "Hospital Vitória", "Hospital Pasteur", "Hospital Rio Mar", "Casa de Saúde São José",
+            "Complexo Hospitalar de Niterói (CHN)", "Hospital de Clínicas de Jacarepaguá", "Hospital da Lagoa"
+        ];
+
+        // Banco de pedidos simulado (Novos + Em Produção)
+        let adminOrders = [
+            {
+                id: "URSO-8804",
+                crianca: "Lucas Gabriel",
+                hospital: "Hospital Samaritano Botafogo",
+                urso: "Creme (Lisa)",
+                fase: "novo",
+                statusTag: "Aguardando Triagem",
+                envioFabrica: "19/11/2026 (Prev.)",
+                envioAudio: "19/11/2026 (Prev.)",
+                transporteAtual: "Aguardando coleta na Fábrica",
+                prazoHospital: "22/11/2026 - 14:00"
+            },
+            {
+                id: "URSO-8805",
+                crianca: "Helena Martins",
+                hospital: "Complexo Hospitalar de Niterói (CHN)",
+                urso: "Lilás (Bolinhas)",
+                fase: "novo",
+                statusTag: "Novo Pedido Web",
+                envioFabrica: "19/11/2026 (Prev.)",
+                envioAudio: "20/11/2026 (Prev.)",
+                transporteAtual: "Ordem na fila ERP",
+                prazoHospital: "23/11/2026 - 10:00"
+            },
+            {
+                id: "URSO-8801",
+                crianca: "Arthur Silva",
+                hospital: "INCA - Instituto Nacional de Câncer",
+                urso: "Azul (Listras)",
+                fase: "producao",
+                statusTag: "Fábrica ➔ Áudio",
+                envioFabrica: "17/11/2026 - 09:00",
+                envioAudio: "18/11/2026 - 14:00",
+                transporteAtual: "Van #02 (Fábrica ➔ Empresa de Áudio)",
+                prazoHospital: "20/11/2026 - 16:00"
+            },
+            {
+                id: "URSO-8802",
+                crianca: "Alice Mansur",
+                hospital: "Hospital Copa D'Or",
+                urso: "Rosa (Bolinhas)",
+                fase: "producao",
+                statusTag: "Assepsia UV-C (Hub)",
+                envioFabrica: "16/11/2026 - 10:30",
+                envioAudio: "17/11/2026 - 15:00",
+                transporteAtual: "Recebido no Hub AlerGria (Vindo da Áudio)",
+                prazoHospital: "19/11/2026 - 11:00"
+            },
+            {
+                id: "URSO-8803",
+                crianca: "Bernardo Costa",
+                hospital: "Hospital Municipal Souza Aguiar",
+                urso: "Marrom (Lisa)",
+                fase: "producao",
+                statusTag: "Gravação EPROM",
+                envioFabrica: "17/11/2026 - 08:15",
+                envioAudio: "18/11/2026 - 11:20",
+                transporteAtual: "Na Empresa de Áudio (Coleta p/ Hub às 17h)",
+                prazoHospital: "20/11/2026 - 18:00"
+            }
+        ];
 
         function popularCampos() {
             const selectHosp = document.getElementById('paciente-hospital');
             if(selectHosp && selectHosp.options.length <= 1) {
                 hospitaisRJ.sort().forEach(hosp => selectHosp.add(new Option(hosp, hosp)));
             }
+        }
+
+        // --- RENDERIZAÇÃO DO DASHBOARD ADMIN ---
+        function renderAdminDashboard() {
+            const listaNovos = document.getElementById('lista-novos-pedidos');
+            const listaProducao = document.getElementById('lista-em-producao');
+            const tabelaBody = document.getElementById('tabela-parceiras-body');
+            if(!listaNovos || !listaProducao || !tabelaBody) return;
+
+            const novos = adminOrders.filter(o => o.fase === 'novo');
+            const producao = adminOrders.filter(o => o.fase === 'producao');
+
+            document.getElementById('badge-count-novos').innerText = `${novos.length} pedido(s)`;
+            document.getElementById('badge-count-producao').innerText = `${producao.length} pedido(s)`;
+            document.getElementById('kpi-novos-pedidos').innerText = 30 + novos.length;
+            document.getElementById('kpi-em-producao').innerText = 81 + producao.length;
+
+            // 1. Renderizar Novos Pedidos
+            listaNovos.innerHTML = novos.length ? novos.map(o => `
+                <div class="p-4 bg-blue-50/60 dark:bg-gray-700/80 rounded-2xl border border-blue-100 dark:border-gray-600 transition-all hover:shadow-md">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-mono font-extrabold text-sm text-alergria-blue">${o.id}</span>
+                        <span class="text-[11px] bg-blue-100 dark:bg-blue-900 text-alergria-blue px-2.5 py-0.5 rounded-full font-bold">${o.statusTag}</span>
+                    </div>
+                    <p class="text-sm font-bold text-gray-800 dark:text-white">Urso 3D: ${o.urso}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mt-1"><i class="fa-solid fa-child text-alergria-pink mr-1"></i> <strong>${o.crianca}</strong> • ${o.hospital}</p>
+                    
+                    <div class="grid grid-cols-2 gap-2 mt-3 p-2.5 bg-white/80 dark:bg-gray-800/80 rounded-xl text-[11px]">
+                        <div><span class="text-gray-400 block">Envio Fábrica:</span><strong class="text-gray-700 dark:text-gray-200">${o.envioFabrica}</strong></div>
+                        <div><span class="text-gray-400 block">Envio Áudio:</span><strong class="text-gray-700 dark:text-gray-200">${o.envioAudio}</strong></div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-3 pt-2 border-t border-blue-100 dark:border-gray-600">
+                        <span class="text-xs font-bold text-green-600 dark:text-green-400"><i class="fa-regular fa-calendar-check mr-1"></i> Prazo: ${o.prazoHospital}</span>
+                        <button onclick="moverParaProducao('${o.id}')" class="bg-alergria-orange hover:bg-orange-600 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl transition-all active:scale-95 shadow-sm">
+                            Enviar p/ Produção <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('') : '<p class="text-center text-sm text-gray-400 py-8">Nenhum novo pedido aguardando triagem.</p>';
+
+            // 2. Renderizar Em Produção
+            listaProducao.innerHTML = producao.length ? producao.map(o => `
+                <div class="p-4 bg-orange-50/50 dark:bg-gray-700/80 rounded-2xl border border-orange-100 dark:border-gray-600 transition-all hover:shadow-md">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="font-mono font-extrabold text-sm text-alergria-orange">${o.id}</span>
+                        <span class="text-[11px] bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300 px-2.5 py-0.5 rounded-full font-bold">${o.statusTag}</span>
+                    </div>
+                    <p class="text-sm font-bold text-gray-800 dark:text-white">Urso 3D: ${o.urso}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mt-1"><i class="fa-solid fa-hospital text-alergria-blue mr-1"></i> <strong>${o.crianca}</strong> • ${o.hospital}</p>
+                    
+                    <div class="mt-3 p-2.5 bg-white/80 dark:bg-gray-800/80 rounded-xl text-[11px] space-y-1">
+                        <div class="flex justify-between"><span class="text-gray-400">Envio p/ Fabricação:</span><strong class="text-gray-700 dark:text-gray-200">${o.envioFabrica}</strong></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Envio p/ Empresa Áudio:</span><strong class="text-gray-700 dark:text-gray-200">${o.envioAudio}</strong></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Transporte:</span><strong class="text-alergria-blue text-right">${o.transporteAtual}</strong></div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-3 pt-2 border-t border-orange-100 dark:border-gray-600">
+                        <span class="text-xs font-bold text-green-600 dark:text-green-400"><i class="fa-solid fa-clock mr-1"></i> Entrega Hospital: ${o.prazoHospital}</span>
+                        <button onclick="avancarEtapaTransporte('${o.id}')" class="bg-gray-800 dark:bg-gray-600 hover:bg-gray-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl transition-all active:scale-95">
+                            Avançar Rota <i class="fa-solid fa-truck-fast ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('') : '<p class="text-center text-sm text-gray-400 py-8">Nenhum pedido em produção no momento.</p>';
+
+            // 3. Renderizar Tabela Cronograma de Parceiras
+            tabelaBody.innerHTML = adminOrders.map(o => `
+                <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-700/40 transition-colors">
+                    <td class="py-3.5 px-4">
+                        <div class="font-mono font-bold text-alergria-blue">${o.id}</div>
+                        <div class="text-xs text-gray-500 dark:text-gray-400 font-semibold">${o.crianca}</div>
+                    </td>
+                    <td class="py-3.5 px-4 font-semibold text-gray-700 dark:text-gray-200 text-xs">${o.hospital}</td>
+                    <td class="py-3.5 px-4 text-xs font-bold text-gray-600 dark:text-gray-300">${o.envioFabrica}</td>
+                    <td class="py-3.5 px-4 text-xs font-bold text-gray-600 dark:text-gray-300">${o.envioAudio}</td>
+                    <td class="py-3.5 px-4">
+                        <span class="inline-flex items-center text-xs font-bold px-2.5 py-1 rounded-lg ${o.fase === 'novo' ? 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300' : 'bg-blue-50 dark:bg-blue-900/30 text-alergria-blue'}">
+                            ${o.transporteAtual}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4 font-extrabold text-green-600 dark:text-green-400 text-xs whitespace-nowrap">${o.prazoHospital}</td>
+                </tr>
+            `).join('');
+        }
+
+        function moverParaProducao(orderId) {
+            const order = adminOrders.find(o => o.id === orderId);
+            if(order) {
+                const hoje = new Date();
+                const hora = hoje.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                order.fase = 'producao';
+                order.statusTag = 'Na Fábrica (Pelúcia)';
+                order.envioFabrica = `18/11/2026 - ${hora}`;
+                order.transporteAtual = 'Enviado p/ Fábrica (Van #02)';
+                renderAdminDashboard();
+            }
+        }
+
+        function avancarEtapaTransporte(orderId) {
+            const order = adminOrders.find(o => o.id === orderId);
+            if(!order) return;
+
+            const etapas = [
+                { tag: 'Na Fábrica (Pelúcia)', transp: 'Em confecção na Fábrica de Pelúcias' },
+                { tag: 'Fábrica ➔ Áudio', transp: 'Van #02 (Fábrica ➔ Empresa de Áudio)' },
+                { tag: 'Gravação EPROM', transp: 'Na Empresa de Áudio (Chip Sonoro)' },
+                { tag: 'Áudio ➔ Hub AlerGria', transp: 'Furgão #05 (Áudio ➔ Hub AlerGria)' },
+                { tag: 'Assepsia UV-C (Hub)', transp: 'No Hub AlerGria (UV-C e Selagem)' },
+                { tag: 'Rota Hospitalar', transp: 'Veículo #01 (Hub AlerGria ➔ Hospital)' }
+            ];
+
+            const idxAtual = etapas.findIndex(e => e.tag === order.statusTag);
+            const prox = etapas[(idxAtual + 1) % etapas.length];
+            order.statusTag = prox.tag;
+            order.transporteAtual = prox.transp;
+            if(prox.tag === 'Gravação EPROM' && order.envioAudio.includes('Prev.')) {
+                const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                order.envioAudio = `18/11/2026 - ${hora}`;
+            }
+            renderAdminDashboard();
         }
 
         // --- NAVEGAÇÃO SPA ---
@@ -438,7 +730,7 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     
                     if(viewId === 'view-paciente') { setTimeout(initBear3D, 100); popularCampos(); }
-                    if(viewId === 'view-admin') setTimeout(initPCPChart, 300);
+                    if(viewId === 'view-admin') { renderAdminDashboard(); setTimeout(initPCPChart, 300); }
                     if(viewId === 'view-sla-analysis') setTimeout(initSLAChart, 300);
                 }
             };
@@ -451,7 +743,7 @@
 
         function toggleTheme() { document.documentElement.classList.toggle('dark'); }
 
-        // --- GRÁFICO: ANÁLISE DE SLA (Doughnut Chart) ---
+        // --- GRÁFICO: ANÁLISE DE SLA ---
         let slaChartInstance = null;
         function initSLAChart() {
             const ctx = document.getElementById('slaChart');
@@ -497,6 +789,27 @@
 
             const rand = Math.floor(1000 + Math.random() * 9000);
             currentOrderCode = `URSO-${rand}`;
+
+            // Adiciona automaticamente o novo pedido à fila de Novos Pedidos do Admin
+            const prazo = new Date();
+            prazo.setDate(prazo.getDate() + 3);
+            const prazoFormatado = prazo.toLocaleDateString('pt-BR') + ' - 15:00';
+            const envioPrev = new Date();
+            envioPrev.setDate(envioPrev.getDate() + 1);
+            const envioStr = envioPrev.toLocaleDateString('pt-BR') + ' (Prev.)';
+
+            adminOrders.unshift({
+                id: currentOrderCode,
+                crianca: nome,
+                hospital: hosp,
+                urso: `${selectedBearColorName} (${selectedBearPatternName})`,
+                fase: 'novo',
+                statusTag: 'Novo Pedido Web',
+                envioFabrica: envioStr,
+                envioAudio: envioStr,
+                transporteAtual: 'Aguardando aprovação ERP',
+                prazoHospital: prazoFormatado
+            });
             
             document.getElementById('lbl-codigo-gerado').innerText = currentOrderCode;
             document.getElementById('lbl-destinatario-sucesso').innerText = `Destino: ${nome} - ${hosp}`;
@@ -538,10 +851,10 @@
             const now = new Date();
             const formatTime = (date) => date.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
             const logs = [
-                { title: "Início de Esterilização UV-C", desc: "Urso isolado em câmara descontaminante.", type: "text-alergria-blue" },
+                { title: "Início de Esterilização UV-C", desc: "Urso recebido da Empresa de Áudio e isolado em câmara descontaminante no Hub AlerGria.", type: "text-alergria-blue" },
                 { title: "Inspeção de Qualidade (QC)", desc: "Costuras aprovadas. Chip de áudio validado.", type: "text-alergria-yellow" },
-                { title: "Gravação de Hardware (EPROM)", desc: "Áudio do cliente compilado no módulo.", type: "text-alergria-pink" },
-                { title: "Separação de Materiais (BOM)", desc: "Tecidos cortados de acordo com OP.", type: "text-alergria-orange" }
+                { title: "Gravação de Hardware (EPROM)", desc: "Áudio compilado na parceira de áudio e despachado para o Hub.", type: "text-alergria-pink" },
+                { title: "Separação e Confecção (Fábrica)", desc: "Pelúcia montada na fábrica parceira e enviada para integração sonora.", type: "text-alergria-orange" }
             ];
             let html = '';
             logs.forEach((log, index) => {
@@ -557,11 +870,11 @@
 
         const stepData = {
             1: { title: "1. Captação da Demanda", icon: "fa-desktop", color: "text-alergria-pink", desc: "A plataforma recebe a encomenda virtual. O ficheiro de áudio é enviado e o ERP gera instantaneamente a Ordem de Produção (OP)." },
-            2: { title: "2. Produção & Eletrónica", icon: "fa-microchip", color: "text-alergria-orange", desc: "Inicia-se a costura e montagem da estrutura física do urso. Em paralelo, o ficheiro sonoro é injetado fisicamente no microchip EPROM." },
-            3: { title: "3. Quality Control (QC)", icon: "fa-microscope", color: "text-alergria-yellow", desc: "Testes laboratoriais. Validamos a reprodução sonora e testes mecânicos de tração nas costuras garantindo as normas CE." },
-            4: { title: "4. Assepsia UV-C & Ozónio", icon: "fa-viruses", color: "text-teal-500", desc: "Fase clínica. A radiação Ultravioleta C e a saturação de Gás Ozónio eliminam 99,9% dos microrganismos (hospital grade)." },
+            2: { title: "2. Produção & Eletrónica", icon: "fa-microchip", color: "text-alergria-orange", desc: "A fábrica parceira confecciona o urso e o envia para a parceira de áudio, onde o ficheiro sonoro é injetado fisicamente no microchip EPROM." },
+            3: { title: "3. Quality Control (QC)", icon: "fa-microscope", color: "text-alergria-yellow", desc: "Testes laboratoriais no Hub AlerGria. Validamos a reprodução sonora e testes mecânicos de tração nas costuras." },
+            4: { title: "4. Assepsia UV-C & Ozónio", icon: "fa-viruses", color: "text-teal-500", desc: "Fase clínica. A radiação Ultravioleta C e a saturação de Gás Ozónio eliminam 99,9% dos microrganismos (padrão hospitalar)." },
             5: { title: "5. Embalagem Grau Cirúrgico", icon: "fa-box-archive", color: "text-alergria-blue", desc: "Num ambiente de pressão positiva, o urso é condicionado em invólucro de plástico Grau 1 e selado a vácuo para proteção biológica." },
-            6: { title: "6. Expedição e Logística", icon: "fa-truck-fast", color: "text-green-500", desc: "Definição de rotas através de algoritmos logísticos garantindo a entrega Last-Mile aos hospitais, respeitando o SLA." }
+            6: { title: "6. Expedição e Logística", icon: "fa-truck-fast", color: "text-green-500", desc: "Definição de rotas através de algoritmos logísticos garantindo a entrega Last-Mile aos hospitais dentro do prazo previsto (SLA)." }
         };
 
         function openModal(step) { const m = document.getElementById('modal-fluxograma'); const c = document.getElementById('modal-content'); document.getElementById('modal-title').innerText = stepData[step].title; document.getElementById('modal-desc').innerText = stepData[step].desc; const iconDiv = document.getElementById('modal-icon'); iconDiv.className = `text-5xl mb-4 text-center ${stepData[step].color}`; iconDiv.innerHTML = `<i class="fa-solid ${stepData[step].icon}"></i>`; m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => { c.classList.remove('scale-95'); c.classList.add('scale-100'); }, 10); }
@@ -574,7 +887,7 @@
                 if(form && tab) { form.classList.toggle('hidden', t !== type); if(t === type) { tab.classList.add('bg-white', 'dark:bg-gray-800', 'shadow-sm', 'text-alergria-blue'); tab.classList.remove('text-gray-500'); } else { tab.classList.remove('bg-white', 'dark:bg-gray-800', 'shadow-sm', 'text-alergria-blue'); tab.classList.add('text-gray-500'); } }
             });
         }
-        function loginUser(event) { event.preventDefault(); alert(`Sessão de Cliente Iniciada.`); showView('view-home'); }
+        function loginUser(event) { event.preventDefault(); alert('Sessão de Cliente Iniciada.'); showView('view-home'); }
         function loginAdmin(event) {
             event.preventDefault(); const user = document.getElementById('admin-user').value; const pass = document.getElementById('admin-pass').value;
             if((user === 'admin' || user === 'dono') && (pass === 'BancaSenai' || pass === 'admin')) { document.getElementById('admin-user').value = ''; document.getElementById('admin-pass').value = ''; showView('view-admin'); } else alert('Credenciais inválidas.');
@@ -608,9 +921,15 @@
             const animate = function () { requestAnimationFrame(animate); controls.update(); bearRenderer.render(bearScene, bearCamera); }; animate();
         }
 
-        function changeBearColor(hexColor) { if(!bearMaterial) return; bearMaterial.color.setHex(hexColor); bearMaterial.map = null; bearMaterial.needsUpdate = true; }
+        function changeBearColor(hexColor, colorName) {
+            if(colorName) selectedBearColorName = colorName;
+            if(!bearMaterial) return;
+            bearMaterial.color.setHex(hexColor); bearMaterial.map = null; bearMaterial.needsUpdate = true;
+        }
         function changeBearPattern(type) {
-            if(!bearMaterial) return; if(type === 'nenhuma') { bearMaterial.map = null; bearMaterial.needsUpdate = true; return; }
+            selectedBearPatternName = type === 'nenhuma' ? 'Lisa' : (type === 'bolinhas' ? 'Bolinhas' : 'Listras');
+            if(!bearMaterial) return;
+            if(type === 'nenhuma') { bearMaterial.map = null; bearMaterial.needsUpdate = true; return; }
             const canvas = document.createElement('canvas'); canvas.width = 256; canvas.height = 256; const ctx = canvas.getContext('2d'); ctx.fillStyle = '#' + bearMaterial.color.getHexString(); ctx.fillRect(0, 0, 256, 256);
             if(type === 'bolinhas') { ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'; for(let i=0; i<6; i++) for(let j=0; j<6; j++) { ctx.beginPath(); ctx.arc(i*50 + 15, j*50 + 15, 12, 0, Math.PI*2); ctx.fill(); } } 
             else if(type === 'listras') { ctx.fillStyle = 'rgba(255, 255, 255, 0.6)'; for(let i=0; i<256; i+=30) ctx.fillRect(i, 0, 10, 256); }
