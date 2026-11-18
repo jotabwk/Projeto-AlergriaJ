@@ -128,7 +128,7 @@
                         <h3 class="font-fredoka text-xl font-bold text-alergria-blue mb-4">1. Especificação de Cor</h3>
                         <div class="flex flex-wrap gap-4">
                             <button onclick="changeBearColor(0xDCC266, 'Creme')" title="Creme (Padrão)" class="w-12 h-12 rounded-full bg-[#DCC266] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
-                            <button onclick="changeBearColor(0x7C3F14, 'Marromo')" title="Marrom" class="w-12 h-12 rounded-full bg-[#7C3F14] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
+                            <button onclick="changeBearColor(0x7C3F14, 'Marrom')" title="Marrom" class="w-12 h-12 rounded-full bg-[#7C3F14] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
                             <button onclick="changeBearColor(0xE00A80, 'Rosa')" title="Rosa" class="w-12 h-12 rounded-full bg-[#E00A80] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
                             <button onclick="changeBearColor(0x07396B, 'Azul')" title="Azul" class="w-12 h-12 rounded-full bg-[#07396B] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
                             <button onclick="changeBearColor(0x7F4CA5, 'Lilás')" title="Lilás" class="w-12 h-12 rounded-full bg-[#7F4CA5] border-4 border-white dark:border-gray-700 shadow-md hover:scale-110 transition-transform"></button>
@@ -1017,12 +1017,17 @@
             head.position.set(0, 1.25, 0);
             bearGroup.add(head);
 
-            // Volume suave do focinho
-            const muzzle = new THREE.Mesh(new THREE.SphereGeometry(0.24, 32, 32), bearMaterial);
+           // Volume suave do focinho (cor fixa padrão #FFE5CF)
+            const muzzleMat = new THREE.MeshStandardMaterial({
+                color: 0xFFE5CF,
+                roughness: 0.78,
+                metalness: 0.02
+            });
+            const muzzle = new THREE.Mesh(new THREE.SphereGeometry(0.24, 32, 32), muzzleMat);
             muzzle.scale.set(1.28, 0.86, 0.58);
             muzzle.position.set(0, 1.09, 0.81);
             bearGroup.add(muzzle);
-
+            
             // 2. Orelhas redondas com arco marrom-escuro interno
             [-1, 1].forEach(side => {
                 const earGroup = new THREE.Group();
